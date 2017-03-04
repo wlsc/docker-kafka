@@ -1,16 +1,15 @@
 Kafka in Docker
 ===
 
-This repository provides everything you need to run Kafka in Docker.
+This repository provides everything you need to run Kafka (with a Zookeeper) in Docker environment.
 
-For convenience also contains a packaged proxy that can be used to get data from
-a legacy Kafka 7 cluster into a dockerized Kafka 8.
+For convenience also contains a packaged proxy that can be used to get data from a legacy Kafka 7 cluster into a dockerized Kafka 8.
 
 Why?
 ---
-The main hurdle of running Kafka in Docker is that it depends on Zookeeper.
-Compared to other Kafka docker images, this one runs both Zookeeper and Kafka
-in the same container. This means:
+The main hurdle of running Kafka in Docker is that it depends on Zookeeper. 
+
+Compared to other Kafka docker images, this one runs both Zookeeper and Kafka in the same container. This means:
 
 * No dependency on an external Zookeeper host, or linking to another container
 * Zookeeper and Kafka are configured to work together out of the box
@@ -35,7 +34,7 @@ kafka-console-consumer.sh --zookeeper $ZOOKEEPER --topic test
 Running the proxy
 -----------------
 
-Take the same parameters as the spotify/kafka image with some new ones:
+Take the same parameters as the wlsc/kafka image with some new ones:
  * `CONSUMER_THREADS` - the number of threads to consume the source kafka 7 with
  * `TOPICS` - whitelist of topics to mirror
  * `ZK_CONNECT` - the zookeeper connect string of the source kafka 7
@@ -54,7 +53,7 @@ docker run -p 2181:2181 -p 9092:9092 \
 
 In the box
 ---
-* **spotify/kafka**
+* **wlsc/kafka**
 
   The docker image with both Kafka and Zookeeper. Built from the `kafka`
   directory.
@@ -67,15 +66,15 @@ In the box
 Public Builds
 ---
 
-https://registry.hub.docker.com/u/spotify/kafka/
+https://registry.hub.docker.com/u/wlsc/kafka/
 
 https://registry.hub.docker.com/u/spotify/kafkaproxy/
 
 Build from Source
 ---
 
-    docker build -t spotify/kafka kafka/
-    docker build -t spotify/kafkaproxy kafkaproxy/
+    docker build -t wlsc/kafka kafka/
+    docker build -t wlsc/kafkaproxy kafkaproxy/
 
 Todo
 ---
