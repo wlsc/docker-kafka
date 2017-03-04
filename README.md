@@ -1,7 +1,7 @@
 Kafka in Docker
 ===
 
-This repository provides everything you need to run Kafka (with a Zookeeper) in Docker environment.
+This repository provides everything you need to run Kafka (with a Zookeeper) in Docker environment. Image is based on the latest OpenJDK 8.
 
 For convenience also contains a packaged proxy that can be used to get data from a legacy Kafka 7 cluster into a dockerized Kafka 8.
 

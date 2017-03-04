@@ -1,5 +1,5 @@
 # OpenJDK base image
-FROM java:openjdk-8-jre
+FROM openjdk:8-jre
 
 # Environment options
 ENV DEBIAN_FRONTEND noninteractive
