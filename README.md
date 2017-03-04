@@ -19,16 +19,16 @@ Run
 ---
 
 ```bash
-docker run -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=`docker-machine ip \`docker-machine active\`` --env ADVERTISED_PORT=9092 spotify/kafka
+docker run -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=$(docker-machine ip $(docker-machine active)) --env ADVERTISED_PORT=9092 wlsc/kafka
 ```
 
 ```bash
-export KAFKA=`docker-machine ip \`docker-machine active\``:9092
+export KAFKA=$(docker-machine ip $(docker-machine active)):9092
 kafka-console-producer.sh --broker-list $KAFKA --topic test
 ```
 
 ```bash
-export ZOOKEEPER=`docker-machine ip \`docker-machine active\``:2181
+export ZOOKEEPER=$(docker-machine ip $(docker-machine active)):2181
 kafka-console-consumer.sh --zookeeper $ZOOKEEPER --topic test
 ```
 
@@ -43,7 +43,7 @@ Take the same parameters as the spotify/kafka image with some new ones:
 
 ```bash
 docker run -p 2181:2181 -p 9092:9092 \
-    --env ADVERTISED_HOST=`boot2docker ip` \
+    --env ADVERTISED_HOST=$(boot2docker ip) \
     --env ADVERTISED_PORT=9092 \
     --env CONSUMER_THREADS=1 \
     --env TOPICS=my-topic,some-other-topic \
