@@ -27,3 +27,6 @@ EXPOSE 2181 9092
 
 # Start Zookeeper and Kafka
 CMD ["supervisord", "-n"]
+
+# Default directory for shell
+WORKDIR $KAFKA_HOME
