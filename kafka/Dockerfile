@@ -3,7 +3,7 @@ FROM openjdk:8-jre
 
 # Environment options
 ENV DEBIAN_FRONTEND noninteractive
-ENV SCALA_VERSION 2.12
+ENV SCALA_VERSION 2.11
 ENV KAFKA_VERSION 0.11.0.0
 ENV KAFKA_HOME /opt/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION"
 ENV PATH="${KAFKA_HOME}/bin:${PATH}"
@@ -33,7 +33,7 @@ COPY supervisor/kafka.conf supervisor/zookeeper.conf /etc/supervisor/conf.d/
 # 9092 is Kafka
 EXPOSE 2181 9092
 
-# Start Zookeeper and Kafka
+# Start Supervisor
 CMD ["supervisord", "-n"]
 
 # Default directory for shell
