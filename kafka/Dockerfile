@@ -4,7 +4,7 @@ FROM openjdk:8-jre-slim
 # Environment options
 ENV DEBIAN_FRONTEND noninteractive
 ENV SCALA_VERSION 2.11
-ENV KAFKA_VERSION 1.1.0
+ENV KAFKA_VERSION 1.1.1
 ENV KAFKA_HOME /opt/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION"
 ENV PATH="${KAFKA_HOME}/bin:${PATH}"
 
