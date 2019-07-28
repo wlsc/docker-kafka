@@ -1,5 +1,5 @@
 # OpenJDK base image
-FROM openjdk:11-jre-slim
+FROM openjdk:11-jre
 
 # Environment options
 ENV DEBIAN_FRONTEND noninteractive
