@@ -8,6 +8,9 @@
 # * LOG_RETENTION_BYTES: configure the size at which segments are pruned from the log, (default is 1073741824, for 1GB)
 # * NUM_PARTITIONS: configure the default number of log partitions per topic
 
+# add carriage return so appended properties don't end up appended to the end of the last line
+echo "" >> $KAFKA_HOME/config/server.properties
+
 # Configure advertised host/port if we run in helios
 if [ ! -z "$HELIOS_PORT_kafka" ]; then
     ADVERTISED_HOST=`echo $HELIOS_PORT_kafka | cut -d':' -f 1 | xargs -n 1 dig +short | tail -n 1`
@@ -20,6 +23,7 @@ if [ ! -z "$ADVERTISED_HOST" ]; then
     if grep -q "^advertised.host.name" $KAFKA_HOME/config/server.properties; then
         sed -r -i "s/#(advertised.host.name)=(.*)/\1=$ADVERTISED_HOST/g" $KAFKA_HOME/config/server.properties
     else
+        # TODO: sed out previous starts if container is stopped and restarted: sed -r -i "s/%advertised\.host\.name.+$//g" $KAFKA_HOME/config/server.properties
         echo "advertised.host.name=$ADVERTISED_HOST" >> $KAFKA_HOME/config/server.properties
     fi
 fi
@@ -28,6 +32,7 @@ if [ ! -z "$ADVERTISED_PORT" ]; then
     if grep -q "^advertised.port" $KAFKA_HOME/config/server.properties; then
         sed -r -i "s/#(advertised.port)=(.*)/\1=$ADVERTISED_PORT/g" $KAFKA_HOME/config/server.properties
     else
+        # TODO: sed out previous starts if container is stopped and restarted: sed -r -i "s/%advertised\.port.+$//g" $KAFKA_HOME/config/server.properties
         echo "advertised.port=$ADVERTISED_PORT" >> $KAFKA_HOME/config/server.properties
     fi
 fi
