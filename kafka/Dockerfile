@@ -1,10 +1,10 @@
 # OpenJDK base image
-FROM openjdk:11-jre
+FROM openjdk:17-slim
 
 # Environment options
 ENV DEBIAN_FRONTEND noninteractive
 ENV SCALA_VERSION 2.13
-ENV KAFKA_VERSION 3.0.0
+ENV KAFKA_VERSION 3.1.0
 ENV KAFKA_HOME /opt/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION"
 ENV PATH="${KAFKA_HOME}/bin:${PATH}"
 
