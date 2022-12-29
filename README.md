@@ -46,5 +46,5 @@ docker buildx build --platform linux/arm64,linux/amd64 -t wlsc/kafka:latest .
 Import single platform into Docker Desktop
 
 ```bash
-docker buildx build --platform linux/arm64 -t wlsc/kafka:kraft --load .
+docker buildx build --platform linux/arm64 -t wlsc/kafka:latest --load .
 ```
