@@ -10,7 +10,7 @@ ENV PATH="${KAFKA_HOME}/bin:${PATH}"
 
 # Install dependencies
 RUN apt-get update && \
-    apt-get install -y wget supervisor dnsutils vim nano && \
+    apt-get install -y netcat wget supervisor dnsutils vim nano && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
@@ -19,8 +19,12 @@ RUN wget -q https://archive.apache.org/dist/kafka/"$KAFKA_VERSION"/kafka_"$SCALA
     tar xfz /tmp/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION".tgz -C /opt && \
     rm /tmp/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION".tgz
 
-# Start Kafka
+# Start Kafka script
 COPY scripts/start-kafka.sh /usr/bin/start-kafka.sh
+
+# Kafka topic inititalization
+COPY scripts/init-kafka.sh /usr/bin/init-kafka.sh
+RUN chmod +x /usr/bin/init-kafka.sh
 
 # Kafka config
 RUN \
