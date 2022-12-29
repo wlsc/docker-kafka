@@ -10,7 +10,7 @@ ENV PATH="${KAFKA_HOME}/bin:${PATH}"
 
 # Install dependencies
 RUN apt-get update && \
-    apt-get install -y zookeeper wget supervisor dnsutils vim nano && \
+    apt-get install -y wget supervisor dnsutils vim nano && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
@@ -24,14 +24,13 @@ COPY scripts/start-kafka.sh /usr/bin/start-kafka.sh
 
 # Kafka config
 RUN \
-    sed -i "s|#delete.topic.enable|delete.topic.enable|g" "$KAFKA_HOME"/config/server.properties
+    sed -i "s|#delete.topic.enable|delete.topic.enable|g" "$KAFKA_HOME"/config/kraft/server.properties
 
 # Supervisor config
-COPY supervisor/kafka.conf supervisor/zookeeper.conf /etc/supervisor/conf.d/
+COPY supervisor/kafka.conf /etc/supervisor/conf.d/
 
-# 2181 is Zookeeper, 
 # 9092 is Kafka
-EXPOSE 2181 9092
+EXPOSE 9092
 
 # Start Supervisor
 CMD ["supervisord", "-n"]
