@@ -1,5 +1,5 @@
-# OpenJDK base image
-FROM openjdk:17-slim
+# Base image
+FROM eclipse-temurin:17-jre-focal
 
 # Environment options
 ENV DEBIAN_FRONTEND noninteractive
