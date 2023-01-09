@@ -1,7 +1,8 @@
 Kafka in Docker
 ===
 
-This repository provides everything you need to run Kafka (with a Zookeeper) in Docker environment. Image is based on the latest OpenJDK 8.
+This repository provides everything you need to run Kafka (with a Zookeeper) in Docker environment. 
+Image is based on the latest stable Eclipse Temurin (OpenJDK image was deprecated by RedHat).
 
 Why?
 ---
