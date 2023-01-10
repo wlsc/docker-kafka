@@ -4,7 +4,7 @@ FROM eclipse-temurin:17-jre-focal
 # Environment options
 ENV DEBIAN_FRONTEND noninteractive
 ENV SCALA_VERSION 2.13
-ENV KAFKA_VERSION 3.3.1
+ENV KAFKA_VERSION 3.2.3
 ENV KAFKA_HOME /opt/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION"
 ENV PATH="${KAFKA_HOME}/bin:${PATH}"
 
