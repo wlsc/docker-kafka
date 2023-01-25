@@ -1,14 +1,24 @@
 Kafka in Docker
 ===
 
-This repository provides everything you need to run Kafka (without a Zookeeper, with KRaft support) in Docker environment. 
+This repository provides everything you need to run Kafka (with a Zookeeper) in Docker environment.
 Image is based on the latest stable Eclipse Temurin (OpenJDK image was deprecated by RedHat).
+
+Why?
+---
+The main hurdle of running Kafka in Docker is that it depends on Zookeeper.
+
+Compared to other Kafka docker images, this one runs both Zookeeper and Kafka in the same container.
+This means:
+
+* No dependency on an external Zookeeper host, or linking to another container
+* Zookeeper and Kafka are configured to work together out of the box
 
 Run
 ---
 
 ```bash
-docker run -d -p 9092:9092 --name kafka wlsc/kafka
+docker run -d -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=$(docker-machine ip $(docker-machine active)) --env ADVERTISED_PORT=9092 --name kafka wlsc/kafka
 ```
 
 Kafka Producer
@@ -23,25 +33,25 @@ Kafka Consumer
 ---
 
 ```bash
-kafka-console-consumer.sh --topic test --from-beginning --bootstrap-server localhost:9092
+export ZOOKEEPER=$(docker-machine ip $(docker-machine active)):2181
+kafka-console-consumer.sh --zookeeper $ZOOKEEPER --topic test
 ```
 
 In the box
 ---
+
 * **wlsc/kafka**
 
-  The docker image with both Kafka with KRaft. Built from the `kafka`directory.
+  The docker image with both Kafka and Zookeeper. Built from the `kafka`
+  directory.
 
 Public Builds
 ---
 
 https://registry.hub.docker.com/u/wlsc/kafka/
 
-Build from Source (from folder /kafka)
+Build from Source
 ---
-```bash
-docker buildx build --platform linux/arm64,linux/amd64 -t wlsc/kafka:latest .
-```
 
 Import single platform into Docker Desktop
 
