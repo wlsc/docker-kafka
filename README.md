@@ -1,8 +1,14 @@
 Kafka in Docker
 ===
 
-This repository provides everything you need to run Kafka (without a Zookeeper, with KRaft support) in Docker environment. 
+This repository provides everything you need to run Kafka (without a Zookeeper, with KRaft support)
+in Docker environment.
 Image is based on the latest stable Eclipse Temurin (OpenJDK image was deprecated by RedHat).
+
+Note
+---
+
+Starting with version 3.4.0, simple tag and tag with -kraft add-on are the same builds.
 
 Run
 ---
