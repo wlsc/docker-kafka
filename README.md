@@ -54,3 +54,8 @@ Import single platform into Docker Desktop
 ```bash
 docker buildx build --platform linux/arm64 -t wlsc/kafka:latest --load .
 ```
+
+Source of Dockerfile
+---
+
+You can find it here https://github.com/wlsc/docker-kafka
