@@ -4,7 +4,7 @@ FROM eclipse-temurin:17-jre-focal
 # Environment options
 ENV DEBIAN_FRONTEND noninteractive
 ENV SCALA_VERSION 2.13
-ENV KAFKA_VERSION 3.9.0
+ENV KAFKA_VERSION 4.0.0
 ENV KAFKA_HOME /opt/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION"
 ENV PATH="${KAFKA_HOME}/bin:${PATH}"
 
@@ -28,7 +28,7 @@ RUN chmod +x /usr/bin/init-kafka.sh
 
 # Kafka config
 RUN \
-    sed -i "s|#delete.topic.enable|delete.topic.enable|g" "$KAFKA_HOME"/config/kraft/server.properties
+    sed -i "s|#delete.topic.enable|delete.topic.enable|g" "$KAFKA_HOME"/config/server.properties
 
 # Supervisor config
 COPY supervisor/kafka.conf /etc/supervisor/conf.d/
