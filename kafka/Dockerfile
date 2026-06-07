@@ -4,7 +4,7 @@ FROM eclipse-temurin:25-jre-noble
 # Environment options
 ENV DEBIAN_FRONTEND noninteractive
 ENV SCALA_VERSION 2.13
-ENV KAFKA_VERSION 4.2.1
+ENV KAFKA_VERSION 4.3.0
 ENV KAFKA_HOME /opt/kafka_"$SCALA_VERSION"-"$KAFKA_VERSION"
 ENV PATH="${KAFKA_HOME}/bin:${PATH}"
 
