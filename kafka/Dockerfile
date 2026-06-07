@@ -1,5 +1,5 @@
 # Base image
-FROM eclipse-temurin:17-jre-focal
+FROM eclipse-temurin:25-jre-noble
 
 # Environment options
 ENV DEBIAN_FRONTEND noninteractive
@@ -10,7 +10,7 @@ ENV PATH="${KAFKA_HOME}/bin:${PATH}"
 
 # Install dependencies
 RUN apt-get update && \
-    apt-get install -y netcat wget supervisor dnsutils vim nano && \
+    apt-get install -y netcat-openbsd wget supervisor dnsutils vim nano && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
